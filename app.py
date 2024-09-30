@@ -21,8 +21,18 @@ class PRDForm(FlaskForm):
     page_size = SelectField('Ukuran Halaman', choices=[('A4', 'A4'), ('F4', 'F4'), ('Letter', 'Letter')])
     submit = SubmitField('Buat PDF')
 
+def create_output_directories():
+    # Membuat folder output jika belum ada
+    pdf_folder = os.path.join('static', 'output', 'pdf')
+    image_folder = os.path.join('static', 'output', 'image')
+    
+    os.makedirs(pdf_folder, exist_ok=True)
+    os.makedirs(image_folder, exist_ok=True)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    create_output_directories()  # Memastikan folder ada sebelum melakukan proses
+    
     form = PRDForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -50,8 +60,8 @@ def index():
         elements.append(title_paragraph)
         elements.append(Spacer(1, 12))
 
-        # Menambahkan konten (menggunakan HTML)
-        content_paragraph = Paragraph(content.replace('\n', '<br/>'), styles['BodyText'])
+        # Menambahkan konten
+        content_paragraph = Paragraph(content, styles['BodyText'])
         elements.append(content_paragraph)
 
         # Menyusun dokumen
