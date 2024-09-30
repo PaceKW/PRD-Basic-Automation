@@ -17,5 +17,5 @@ requirements.txt
 .DS_Store
 
 # Path
-static/image
-static/pdf
+static/output/image
+static/output/pdf
