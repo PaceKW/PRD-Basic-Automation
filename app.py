@@ -59,13 +59,16 @@ def index():
 
         # Mengonversi PDF menjadi gambar untuk preview
         images = convert_from_path(pdf_path)
-        preview_image_path = os.path.join('static/output/image', f'{title}_{pdf_filename}.png')
+        preview_image_filename = f'preview_{title}_{datetime.now().strftime("%Y%m%d_%H%M%S")}.png'
+        preview_image_path = os.path.join('static/output/image', preview_image_filename)
+        
+
 
         # Menyimpan gambar preview
         if images:
             images[0].save(preview_image_path, 'PNG')
 
-        return redirect(url_for('preview', pdf_filename=pdf_filename, preview_image='preview_' + pdf_filename + '.png'))
+        return redirect(url_for('preview', pdf_filename=pdf_filename, preview_image=preview_image_filename))
 
     return render_template('index.html', form=form)
 
@@ -77,7 +80,7 @@ def preview():
 
 @app.route('/download/<pdf_filename>')
 def download(pdf_filename):
-    return send_file(os.path.join('static', pdf_filename), as_attachment=True)
+    return send_file(os.path.join('static/output/pdf', pdf_filename), as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
