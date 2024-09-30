@@ -15,3 +15,7 @@ requirements.txt
 
 # Mac OS
 .DS_Store
+
+# Path
+static/image
+static/pdf
