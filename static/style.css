@@ -1,12 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-}
+/* static/css/style.css */
 
-h1 {
-    color: #333;
+body {
+    background-color: #f8f9fa;  /* Background color for the body */
 }
 
 .container {
-    max-width: 800px;
+    margin-top: 50px;  /* Jarak antara judul dan input pengguna */
+}
+
+h2 {
+    margin-bottom: 30px;  /* Jarak bawah untuk judul */
+}
+
+.btn-primary {
+    margin-top: 20px;  /* Jarak atas untuk tombol */
+}
+
+.image-preview {
+    margin-bottom: 30px;  /* Jarak bawah antara image dan button */
+}
+
+/* Tambahkan margin untuk gap antara judul dan form */
+.form-gap {
+    margin-top: 40px;  /* Jarak antara judul dan form */
+}
+
+/* Tambahkan margin untuk whitespace di bagian bawah preview */
+.whitespace {
+    margin-bottom: 50px;  /* Jarak bawah untuk whitespace */
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;  /* Tengah pada tombol */
 }

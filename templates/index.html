@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRD Document Automation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container mt-5">
         <h2 class="text-center">PRD Document Automation</h2>
+        <div class="form-gap"></div> <!-- Tambahkan gap di sini -->
         <form method="POST" action="{{ url_for('index') }}">
-            {{ form.hidden_tag() }}  <!-- Ensure CSRF token is included -->
+            {{ form.hidden_tag() }}  <!-- CSRF token -->
             <div class="form-group">
                 <label for="title" class="font-weight-bold">Judul</label>
                 {{ form.title(class="form-control") }}
@@ -33,7 +35,7 @@
                 {{ form.submit(class="btn btn-primary btn-lg") }}
             </div>
             {% if form.errors %}
-                <div class="text-danger">{{ form.errors }}</div>  <!-- Display any form validation errors -->
+                <div class="text-danger">{{ form.errors }}</div>
             {% endif %}
         </form>
     </div>
