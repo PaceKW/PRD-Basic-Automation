@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1>Preview Dokumen PRD</h1>
-        <img src="{{ url_for('static', filename=preview_image) }}" alt="Preview" style="width: 100%; max-width: 600px;" class="img-thumbnail">
+        <img src="{{ url_for('static', filename='output/image/' + preview_image) }}" alt="Preview" style="width: 100%; max-width: 600px;" class="img-thumbnail">
         <br>
         <a href="{{ url_for('download', pdf_filename=pdf_filename) }}" class="btn btn-success mt-3">Unduh PDF</a>
         <br><br>

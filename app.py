@@ -39,7 +39,7 @@ def index():
 
         # Membuat PDF
         pdf_filename = f"contoh_prd_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-        pdf_path = os.path.join('static', pdf_filename)
+        pdf_path = os.path.join('static/output/pdf', pdf_filename)
 
         doc = SimpleDocTemplate(pdf_path, pagesize=size)
         elements = []
@@ -59,7 +59,7 @@ def index():
 
         # Mengonversi PDF menjadi gambar untuk preview
         images = convert_from_path(pdf_path)
-        preview_image_path = os.path.join('static', f'preview_{pdf_filename}.png')
+        preview_image_path = os.path.join('static/output/image', f'preview_{pdf_filename}.png')
 
         # Menyimpan gambar preview
         if images:
