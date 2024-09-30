@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat PRD</title>
+    <title>PRD Document Automation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Buat Dokumen PRD</h1>
-        <form method="POST" class="mt-4">
-            {{ form.hidden_tag() }}
+        <h2 class="text-center">PRD Document Automation</h2>
+        <form method="POST" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}  <!-- Ensure CSRF token is included -->
             <div class="form-group">
-                <label for="title">Judul:</label>
-                {{ form.title(class="form-control", placeholder="Masukkan Judul") }}
+                <label for="title" class="font-weight-bold">Judul</label>
+                {{ form.title(class="form-control") }}
+                {% if form.title.errors %}
+                    <div class="text-danger">{{ form.title.errors[0] }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="content">Konten:</label>
-                {{ form.content(class="form-control", placeholder="Masukkan Konten", cols=50, rows=10) }}
+                <label for="content" class="font-weight-bold">Konten</label>
+                {{ form.content(class="form-control", rows=5) }}
+                {% if form.content.errors %}
+                    <div class="text-danger">{{ form.content.errors[0] }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="page_size">Ukuran Halaman:</label>
+                <label for="page_size" class="font-weight-bold">Ukuran Halaman</label>
                 {{ form.page_size(class="form-control") }}
             </div>
-            {{ form.submit(class="btn btn-primary") }}
+            <div class="text-center">
+                {{ form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+            {% if form.errors %}
+                <div class="text-danger">{{ form.errors }}</div>  <!-- Display any form validation errors -->
+            {% endif %}
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

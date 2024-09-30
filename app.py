@@ -50,8 +50,8 @@ def index():
         elements.append(title_paragraph)
         elements.append(Spacer(1, 12))
 
-        # Menambahkan konten
-        content_paragraph = Paragraph(content, styles['BodyText'])
+        # Menambahkan konten (menggunakan HTML)
+        content_paragraph = Paragraph(content.replace('\n', '<br/>'), styles['BodyText'])
         elements.append(content_paragraph)
 
         # Menyusun dokumen
@@ -61,8 +61,6 @@ def index():
         images = convert_from_path(pdf_path)
         preview_image_filename = f'preview_{title}_{datetime.now().strftime("%Y%m%d_%H%M%S")}.png'
         preview_image_path = os.path.join('static/output/image', preview_image_filename)
-        
-
 
         # Menyimpan gambar preview
         if images:
